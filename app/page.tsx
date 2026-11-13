@@ -437,16 +437,7 @@ export default function Home() {
         {datePlan&&<article className="date-result"><span className="section-kicker">YOUR DATE PLAN · {dateMood.toUpperCase()}</span><h3>{datePlan.title}</h3><p>{datePlan.description}</p><ol>{datePlan.steps.map((step,i)=><li key={i}>{step}</li>)}</ol><div className="date-icebreaker"><span className="section-kicker">A QUESTION TO KICK THINGS OFF</span><p>“{datePlan.icebreaker}”</p></div><button className="chemistry-link" onClick={()=>{navigator.clipboard?.writeText(`${datePlan.title}\n${datePlan.description}\n${datePlan.steps.join('\n')}\nOpening question: ${datePlan.icebreaker}`);flash('Date plan copied.');}}>Copy date plan ↗</button></article>}
       </div>}
 
-      {view==='profile' && <div className="profile-edit-card"><div className="profile-edit-head"><div><span className="section-kicker">YOUR PROFILE</span><h2>Make it feel like you.</h2><p>Small details can make a first conversation easier.</p></div><button className="text-button" onClick={()=>setView('discover')}>Close ×</button></div><form onSubmit={saveProfile} className="form-stack">
-        <div className="field-row"><label>Your name<input value={form.display_name} onChange={e=>setForm({...form,display_name:e.target.value})} required /></label><label>Age<input type="number" min="18" max="99" value={form.age} onChange={e=>setForm({...form,age:e.target.value})} required /></label></div>
-        <div className="field-row"><label>City<input value={form.city} onChange={e=>setForm({...form,city:e.target.value})} required /></label><label>Work or passion<input value={form.role} onChange={e=>setForm({...form,role:e.target.value})} /></label></div>
-        <label>A little about you<textarea rows={3} value={form.bio} onChange={e=>setForm({...form,bio:e.target.value})} required /></label>
-        <label>Interests <span className="field-hint">Separate with commas</span><input value={form.interests} onChange={e=>setForm({...form,interests:e.target.value})} /></label>
-        <label>Values <span className="field-hint">Separate with commas</span><input value={form.values} onChange={e=>setForm({...form,values:e.target.value})} /></label>
-        <label>What are you looking for?<textarea rows={2} value={form.looking_for} onChange={e=>setForm({...form,looking_for:e.target.value})} /></label>
-        <label>How do you connect?<textarea rows={2} value={form.communication_style} onChange={e=>setForm({...form,communication_style:e.target.value})} /></label>
-        {notice&&<p className="notice">{notice}</p>}<div className="profile-actions"><button className="primary-button" disabled={busy}>{busy?'Saving…':'Save changes ↗'}</button><button type="button" className="text-button" onClick={logout}>Log out</button></div>
-      </form></div>}
+
     </section>
 
     {chemistryPeer && <div className="modal-backdrop" onClick={()=>{setChemistryPeer(null);setChemistry(null);}}><section className="chemistry-modal" onClick={e=>e.stopPropagation()}>
